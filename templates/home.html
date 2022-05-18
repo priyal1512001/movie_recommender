@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Movies Recommendation System</title>
+  <title> Movies Recommendation System </title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+  <limk href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
 
-  <!-- Font Awesome -->
+  <!-- Font -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
   <!-- Bootstrap -->
@@ -38,13 +38,14 @@
       <button class="btn btn-primary btn-block movie-button" style="background-color: #e50914;text-align: center;border-color: #e50914;width:120px;" disabled="true" >Enter</button><br><br>
     </div>
 	</div>
+	
 
   <div id="loader" class="text-center">
   </div>
   
   <div class="fail">
-    <center><h3>Sorry! The movie you requested is not in our database. 
-    Please check the spelling or try with other movies!</h3></center>
+    <center><h4>Sorry! The movie you requested is not in our database. 
+    Please check the spelling or try with other movies!</h4></center>
   </div>
 
 	<div class="results">
@@ -53,13 +54,15 @@
     </center>
 	</div>
 	
+
 	
 	
 	<script src="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@7.2.0/dist/js/autoComplete.min.js"></script>
   <script type="text/javascript" src="{{url_for('static', filename='autocomplete.js')}}"></script>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script type="text/javascript" src="{{url_for('static', filename='recommend.js')}}"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> </script>
+  <script type="text/javascript" src="{{url_for('static', filename='recommend.js')}}"> </script>
 
+	
 </body>
 </html>
