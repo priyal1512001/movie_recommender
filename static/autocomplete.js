@@ -1,12 +1,13 @@
 new autoComplete({
-    data: {                              // Data src [Array, Function, Async] | (REQUIRED)
+    data: {                              // Data src [Array, Function, Async]
       src: films,
     },
-    selector: "#autoComplete",           // Input field selector              | (Optional)
-    threshold: 2,                        // Min. Chars length to start Engine | (Optional)
-    debounce: 100,                       // Post duration for engine to start | (Optional)
-    searchEngine: "strict",              // Search Engine type/mode           | (Optional)
-    resultsList: {                       // Rendered results list object      | (Optional)
+    
+    selector: "#autoComplete",           // Input field selector             
+    threshold: 3,                        // Min. Characters to enter to start Engine 
+    debounce: 100,                       // the time engines take to start. 
+    searchEngine: "strict",              // the mode of search engine        
+    resultsList: {                       // Rendered results list object     
         render: true,
         container: source => {
             source.setAttribute("id", "food_list");
@@ -15,22 +16,23 @@ new autoComplete({
         position: "afterend",
         element: "ul"
     },
-    maxResults: 5,                         // Max. number of rendered results | (Optional)
-    highlight: true,                       // Highlight matching results      | (Optional)
-    resultItem: {                          // Rendered result item            | (Optional)
+    
+    maxResults: 5,                         // Maximum number of submitted results 
+    highlight: true,                       // Highlight matching results      
+    resultItem: {                          // Rendered result items           
         content: (data, source) => {
             source.innerHTML = data.match;
         },
         element: "li"
     },
-    noResults: () => {                     // Action script on noResults      | (Optional)
+    noResults: () => {                     // Action script on noResults     
         const result = document.createElement("li");
         result.setAttribute("class", "no_result");
         result.setAttribute("tabindex", "1");
         result.innerHTML = "No Results";
         document.querySelector("#autoComplete_list").appendChild(result);
     },
-    onSelection: feedback => {             // Action script onSelection event | (Optional)
+    onSelection: feedback => {             // Action script onSelection event
         document.getElementById('autoComplete').value = feedback.selection.value;
     }
 });
