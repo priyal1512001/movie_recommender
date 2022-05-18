@@ -1,18 +1,19 @@
 $(function() {
-  // Button will be disabled until we type anything inside the input field
+  
+  //until the user enters the movie name in the input section the button will remain disabled.
   const source = document.getElementById('autoComplete');
   const inputHandler = function(e) {
     if(e.target.value==""){
-      $('.movie-button').attr('disabled', true);
+      $('.movie-button').attr('disabled', true);  //for empty value disable
     }
     else{
-      $('.movie-button').attr('disabled', false);
+      $('.movie-button').attr('disabled', false);   //for a given value disabilty is false
     }
   }
   source.addEventListener('input', inputHandler);
 
   $('.movie-button').on('click',function(){
-    var my_api_key = '8265bd1679663a7ea12ac168da84d2e8';
+    var my_api_key = '8265bd1679663a7ea12ac168da84d2e8';  //entering the API key
     var title = $('.movie').val();
     if (title=="") {
       $('.results').css('display','none');
@@ -31,7 +32,7 @@ function recommendcard(e){
   load_details(my_api_key,title);
 }
 
-// get the basic details of the movie from the API (based on the name of the movie)
+// get the basic details of the movie from the API related to the name of the movie.
 function load_details(my_api_key,title){
   $.ajax({
     type: 'GET',
@@ -89,7 +90,7 @@ function movie_recs(movie_title,movie_id,my_api_key){
   }); 
 }
 
-// get all the details of the movie using the movie id.
+// getting the details of the movie by movie id.
 function get_movie_details(movie_id,my_api_key,arr,movie_title) {
   $.ajax({
     type:'GET',
@@ -133,7 +134,8 @@ function show_details(movie_details,arr,movie_title,my_api_key,movie_id){
   ind_cast = get_individual_cast(movie_cast,my_api_key);
   
   details = {
-    'title':movie_title,
+      'title':movie_title,
+      //converting the javascript object to JSON string
       'cast_ids':JSON.stringify(movie_cast.cast_ids),
       'cast_names':JSON.stringify(movie_cast.cast_names),
       'cast_chars':JSON.stringify(movie_cast.cast_chars),
@@ -160,7 +162,7 @@ function show_details(movie_details,arr,movie_title,my_api_key,movie_id){
     url:"/recommend",
     dataType: 'html',
     complete: function(){
-      $("#loader").delay(500).fadeOut();
+      $("#loader").delay(500).fadeOut();    //the loader will emerge 
     },
     success: function(response) {
       $('.results').html(response);
@@ -170,7 +172,7 @@ function show_details(movie_details,arr,movie_title,my_api_key,movie_id){
   });
 }
 
-// get the details of individual cast
+// The details of individual cast is shown
 function get_individual_cast(movie_cast,my_api_key) {
     cast_bdays = [];
     cast_bios = [];
@@ -190,7 +192,7 @@ function get_individual_cast(movie_cast,my_api_key) {
     return {cast_bdays:cast_bdays,cast_bios:cast_bios,cast_places:cast_places};
   }
 
-// getting the details of the cast for the requested movie
+// details related to the cast of the movie will emerge.
 function get_movie_cast(movie_id,my_api_key){
     cast_ids= [];
     cast_names = [];
@@ -203,11 +205,11 @@ function get_movie_cast(movie_id,my_api_key){
       url:"https://api.themoviedb.org/3/movie/"+movie_id+"/credits?api_key="+my_api_key,
       async:false,
       success: function(my_movie){
-        if(my_movie.cast.length>=10){
+        if(my_movie.cast.length>=10){      //if the cast is more than 10 then ony top 10 will be considered.
           top_cast = [0,1,2,3,4,5,6,7,8,9];
         }
         else {
-          top_cast = [0,1,2,3,4];
+          top_cast = [0,1,2,3,4];           //otherwise only 5 will be considered.
         }
         for(var my_cast in top_cast){
           cast_ids.push(my_movie.cast[my_cast].id)
@@ -225,7 +227,7 @@ function get_movie_cast(movie_id,my_api_key){
     return {cast_ids:cast_ids,cast_names:cast_names,cast_chars:cast_chars,cast_profiles:cast_profiles};
   }
 
-// getting posters for all the recommended movies
+// getting posters for all the recommended movies from API
 function get_movie_posters(arr,my_api_key){
   var arr_poster_list = []
   for(var m in arr) {
