@@ -2,14 +2,13 @@
 import numpy as np
 import pandas as pd
 from flask import Flask, render_template, request
-from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
+from sklearn.feature_extraction.text import CountVectorizer
 import json
-import bs4 as bs                                                 #for web scrapping
 import urllib.request
-import pickle                                                     #to convert into bytestream
 import requests                                                   #send the HTTP request
-
+import pickle                                                     #to convert into bytestream
+import bs4 as bs                                                 #for web scrapping
 
 
 # nlp model and tfidf vectorizer from disk is loaded
@@ -42,18 +41,18 @@ def rcmd(m):
         i = data.loc[data['movie_title']==m].index[0]
         lst = list(enumerate(similarity[i]))
         lst = sorted(lst, key = lambda x:x[1] ,reverse=True)
-        lst = lst[1:11] # not adding that movie that is already in the request box.
+        lst = lst[1:11]                                      # not adding that movie that is already in the request box.
         l = []
         for i in range(len(lst)):
             a = lst[i][0]
             l.append(data['movie_title'][a])
         return l
     
-# conversion of list of string to list (eg. "["abc","def"]" to ["abc","def"])
+# conversion of list of string to list ( "["abc","xyz"]" to ["abc","xyz"])
 def convert_to_list(my_list):
     my_list = my_list.split('","')
-    my_list[0] = my_list[0].replace('["','')
-    my_list[-1] = my_list[-1].replace('"]','')
+    my_list[0] = my_list[0].replace('["','')    #replacing the parenthesis with space.
+    my_list[-1] = my_list[-1].replace('"]','')  #same as above.
     return my_list
 
 
@@ -84,7 +83,7 @@ def similarity():
 
 @app.route("/recommend",methods=["POST"])
 def recommend():
-    # getting data from asynchronous javascript and XML request
+    # getting data from asynchronous javascript and XML request (AJAX)
     #it will get the data from the webserver and JS and HTML  that will display the content.
    
     title = request.form['title']
