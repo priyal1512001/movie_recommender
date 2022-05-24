@@ -17,6 +17,8 @@ The details related to the movies are taken from TMDB API. Webscrapping is done 
 3. Now write " python main.py" to run the project.
 4. Copy the link that comes in the end to the browser address bar.
 5. End.  
+# Multinomial Baye's Theorem  
+Classification and analysis of data which was divided into training and testing data in the ratio of 4:1.
 # Similarity Score  
 Similarity scoring [0,1] is equivalent to seeking out points in the multidimensional space that are near enough to each other to potentially represent the same true location. It is being done using cosine similarity.    
 # Cosine Similarity  
