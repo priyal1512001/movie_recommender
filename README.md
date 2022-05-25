@@ -15,7 +15,7 @@ The details related to the movies are taken from TMDB API. Webscrapping is done 
 1. Clone the repository.  
 2. Install all the required packages and modules as mention in the "requirements file" by opening cmd in the directory and write " pip install -r requirments.txt".  
 3. Now write " python main.py" to run the project.
-4. Copy the link that comes in the end to the browser address bar.
+4. Copy the link that comes in the end to the browser address bar or copy paste "http://127.0.0.1:5000/" in the address bar.
 5. End.  
 # Multinomial Baye's Theorem  
 Classification and analysis of data which was divided into training and testing data in the ratio of 4:1.
